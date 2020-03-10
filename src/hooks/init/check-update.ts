@@ -5,6 +5,9 @@ import * as fs from 'fs-extra'
 import Template = require('lodash.template')
 import * as path from 'path'
 import * as semver from 'semver'
+import {promisify} from 'util'
+import {URL} from 'url'
+import * as npm from 'npm'
 
 const debug = require('debug')('update-check')
 
@@ -16,8 +19,13 @@ const hook: Hook<'init'> = async function ({config}) {
     timeoutInDays = 60,
     message = '<%= config.name %> update available from <%= chalk.greenBright(config.version) %> to <%= chalk.greenBright(latest) %>.',
     registry = 'https://registry.npmjs.org',
-    authorization = '',
   } = (config.pjson.oclif as any)['warn-if-update-available'] || {}
+
+  await (promisify(npm.load))()
+  const registryConfigKey = registry.replace(new URL(registry).protocol, '')
+  const credentials = npm.config.getCredentialsByURI(registryConfigKey)
+  const base64PatString = Buffer.from(`${credentials.username!}:${credentials.username!}`).toString('base64')
+  const authorization = `Basic ${base64PatString}`
 
   const checkVersion = async () => {
     try {
