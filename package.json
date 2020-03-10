@@ -1,9 +1,9 @@
 {
-  "name": "@oclif/plugin-warn-if-update-available",
+  "name": "@payscale/plugin-warn-if-update-available-az-artifacts",
   "description": "warns if there is a newer version of CLI released",
   "version": "1.7.0",
-  "author": "Jeff Dickey @jdxcode",
-  "bugs": "https://github.com/oclif/plugin-warn-if-update-available/issues",
+  "author": "",
+  "bugs": "",
   "dependencies": {
     "@oclif/command": "^1.5.10",
     "@oclif/config": "^1.12.8",
@@ -43,7 +43,7 @@
     "oclif.manifest.json",
     "/lib"
   ],
-  "homepage": "https://github.com/oclif/plugin-warn-if-update-available",
+  "homepage": "https://github.com/payscale/plugin-warn-if-update-available-az-artifacts",
   "keywords": [
     "oclif-plugin"
   ],
